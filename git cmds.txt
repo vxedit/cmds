@@ -23,11 +23,13 @@ git push -u origin main
 
 -----------------…or push an existing repository from the command line----------------
 
+ssh connect:
 git remote add origin git@github.com:vxedit/cmds.git
+http connect:
+git remote add origin https://github.com/vxedit/cmds.git
 git branch -M main
 git push -u origin main
 
-ssh connect:git@github.com:vxedit/cmds.git
 ------------------------------
 
 ---------rename branch (optional)----------------
