@@ -1,5 +1,3 @@
-git fetch origin
-git merge origin/main
 ----rev cache----
 git rm --cached -r '/_pycache_'
 
@@ -31,6 +29,21 @@ git branch -M main
 git push -u origin main
 
 ------------------------------
+----origin-------
+remove--
+git remote remove origin
+
+add--
+ssh connect:
+git remote add origin git@github.com:vxedit/cmds.git
+http connect:
+git remote add origin https://github.com/vxedit/cmds.git
+
+verify--
+git remote -v
+
+git fetch origin
+git merge origin/main
 
 ---------rename branch (optional)----------------
 for current:
