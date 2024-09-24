@@ -1,0 +1,55 @@
+git fetch origin
+git merge origin/main
+----rev cache----
+git rm --cached -r '/_pycache_'
+
+----------…or create a new repository on the command line--------------
+cd path/to/your/local/project
+git init
+git add .
+git commit -m "Initial commit"
+git remote add origin https://github.com/your-username/my-new-repo.git
+git push -u origin master
+
+---------- or ------------------
+
+echo "# cmds" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:vxedit/cmds.git
+git push -u origin main
+
+-----------------…or push an existing repository from the command line----------------
+
+git remote add origin git@github.com:vxedit/cmds.git
+git branch -M main
+git push -u origin main
+
+ssh connect:git@github.com:vxedit/cmds.git
+------------------------------
+
+---------rename branch (optional)----------------
+for current:
+git branch -m new-branch-name
+
+
+------------unrelated history-------------
+git pull origin main --allow-unrelated-histories
+
+------------- user -----------------
+Current User Config:
+git config --list
+
+Set the Correct User:
+git config user.name "Your Name"
+git config user.email "your-email@example.com"
+
+global:
+git config --global user.name "Irfan"
+git config --global user.email "your-email@example.com"
+
+git config --local user.name "irfan-autobits"
+git config --local user.email "irfan.autobits@gmail.com"
+

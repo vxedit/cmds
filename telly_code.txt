@@ -1,0 +1,37 @@
+'<div>' +
+    '<label for="' + fieldName + '">' + fieldName + '</label>' +
+    '<input type="text" name="' + fieldName + '">' +
+'</div>';
+
+
+    <!-- Render RSVP field -->
+            <div>
+                <label>{{ form.rsvp.label }}</label>
+                {% for radio in form.rsvp %}
+                    {{ radio }} 
+                {% endfor %}
+            </div>
+
+            <!-- Render Food Preference field -->
+            <div>
+                <label>{{ form.food.label }}</label>
+                {% for radio in form.food %}
+                    {{ radio }} 
+                {% endfor %}
+            </div>
+
+            <!-- Render Name on Gift field -->
+            <div>
+                <label>{{ form.name.label }}</label>
+                {{ form.name }}
+            </div>
+
+            <!-- Render Photo on Gift field -->
+            <div>
+                <label>{{ form.photo.label }}</label>
+                {{ form.photo }}
+            </div>
+
+
+
+

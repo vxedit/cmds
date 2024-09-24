@@ -1,0 +1,18 @@
+
+Using Wi-Fi Hotspot
+
+Using Your Phone as a Hotspot (Without Internet):
+
+Connect both your laptop and desktop to your phone's hotspot.
+Set up file sharing on both devices:
+
+On Windows:
+Open File Explorer.
+Right-click the folder you want to share, select "Properties".
+Go to the "Sharing" tab and click "Share".
+Add "Everyone" and set permissions as needed.
+Click "Share" and note the network path.
+
+On the other device, 
+open File Explorer and type the network path (e.g., \\LAPTOP-NAME\SharedFolder) in the address bar.
+Transfer the files over the network.

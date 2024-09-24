@@ -1,0 +1,17 @@
+run--
+glances
+web-run--
+glances -w
+open-at--
+http://<raspberry_pi_ip>:61208
+host: raspi
+
+add vnc 
+install-vnc------
+sudo apt install realvnc-vnc-server realvnc-vnc-viewer
+server-status-------
+sudo systemctl status vncserver-x11-serviced
+sudo systemctl start vncserver-x11-serviced
+Raspberry Pi's IP address
+Username: pi (or your username if changed).
+Password: The password you use to log in to your Raspberry Pi.

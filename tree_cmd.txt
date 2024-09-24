@@ -1,0 +1,4 @@
+tree -a -I '__pycache__' > folder_structure.txt
+
+tree -a > folder_structure.txt
+

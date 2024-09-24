@@ -1,0 +1,73 @@
+############### to make command ###########################################################################
+--Navigate to Your App Directory
+cd D:\niji-admin\NIJIKARTDIGITAL\products
+
+--create managemente dir
+mkdir management
+cd management
+mkdir commands
+cd commands
+
+--Create the __init__.py
+echo. > __init__.py
+---------------to make command alongwith it------------echo. > my_command.py
+cd ..
+echo. > __init__.py
+
+--create command file
+cd commands
+echo. > my_command.py
+
+--add simple command to print hello -------
+# myapp/management/commands/my_command.py
+from django.core.management.base import BaseCommand
+
+class Command(BaseCommand):
+    help = 'Prints "Hello, Django!" to the console'
+
+    def handle(self, *args, **kwargs):
+        self.stdout.write('Hello, Django!')
+
+-------------------------------------------
+
+--run the command
+python manage.py my_command
+
+###########################################################################################################
+--to install extra package in celery
+pipenv install celery redis django-celery-results
+
+######################### running celery ##################################################################
+--start redis
+redis-server.exe
+
+--check if redis is running
+redis-server
+
+python manage.py runserver
+
+--Start Celery Worker:
+celery -A nijitek worker --loglevel=info
+celery -A nijitek worker --loglevel=info --pool=solo
+
+--monitor
+redis-cli monitor
+
+--Start Celery Beat Scheduler:
+celery -A nijitek beat --loglevel=info
+
+
+----if pipenv is not running-----------------
+pipenv run python manage.py runserver
+pipenv run celery -A myproject worker --loglevel=info
+pipenv run celery -A myproject beat --loglevel=info
+
+###################################################################################################################
+-----------ngrok-------
+ngrok config check
+"%HOMEPATH%\AppData\Local\ngrok\ngrok.yml"
+--add auth to yml file
+ngrok config add-authtoken 2gxYFiWTrTYgy4ATk6BjXvQUkfD_863PqE71qncZuKV2D86Cs
+
+--run on 8080
+ngrok http http://localhost:8000

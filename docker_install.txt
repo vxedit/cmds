@@ -1,0 +1,105 @@
+deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu   virginia stable
+
+# non-root-user
+sudo usermod -aG docker $USER
+
+# apply changes by------
+newgrp docker
+
+# verify-
+groups $USER
+
+
+# --------------------------
+sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg -y
+
+# Create the directory for apt keyrings
+sudo install -m 0755 -d /etc/apt/keyrings
+
+# Download Docker's official GPG key
+for mint---------
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+
+
+# Ensure the GPG key is readable
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$UBUNTU_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt-get update
+
+# Install Docker packages
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+
+----------------pi----------------------
+to remove list:
+sudo rm /etc/apt/sources.list.d/docker.list
+
+install shell:
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+
+check:
+sudo docker --version
+
+add user:
+sudo usermod -aG docker $USER
+
+log out and in for changes:
+newgrp docker
+
+strat and enable with boot:
+sudo systemctl start docker
+sudo systemctl enable docker
+
+-------------- pi docker uninstall ------------
+sudo systemctl stop docker
+sudo apt-get purge -y docker-engine docker docker.io docker-ce docker-ce-cli containerd runc
+
+docker dependencies removal-------
+sudo apt-get autoremove -y --purge docker-engine docker docker.io docker-ce
+
+perticular files--------
+sudo rm -rf /var/lib/docker
+sudo rm -rf /var/lib/containerd
+
+config files---------
+sudo rm -rf /etc/docker
+sudo rm -rf ~/.docker
+
+docker grp----
+sudo groupdel docker
+------------------------------------------------------------
+clean-up ------------
+sudo apt-get autoremove -y
+
+package cache----------
+sudo apt-get clean
+
+unsed config----------
+sudo apt-get purge --auto-remove
+
+orphaned pachage-----------
+sudo deborphan | xargs sudo apt-get -y remove --purge
+
+old kernals------------
+uname -r
+
+cache file---------------
+sudo rm -rf ~/.cache/*
+
+update/upgrade----------------
+sudo apt-get update
+sudo apt-get upgrade -y
+
+
+
+
+
+
+
+

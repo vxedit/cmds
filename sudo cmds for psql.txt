@@ -1,0 +1,218 @@
+-----------current info---------------------
+Ver Cluster Port Status Owner       Data directory                 Log file
+14  main    5432 online postgres    /var/lib/postgresql/14/main    /var/log/postgresql/postgresql-14-main.log
+
+--check permission
+mount | grep '/media/irfan/52DC27F95F65897B'
+
+--remount with permission 
+sudo mount -o remount,rw /media/irfan/52DC27F95F65897B
+
+-------------install psql in wsl-----------------
+sudo apt update
+sudo apt install postgresql postgresql-contrib
+
+login as default user--
+sudo -i -u postgres
+
+- check version---
+psql --version 
+
+-----------uninstall psql in wsl-----------------
+sudo apt-get --purge remove postgresql postgresql-contrib
+sudo rm -rf /var/lib/postgresql                     - remove data dir
+            ----
+sudo rm -rf /etc/postgresql                          -----remove config files
+sudo rm -rf /etc/postgresql-common
+sudo rm -rf /var/log/postgresql
+sudo rm -rf /etc/systemd/system/postgresql.service
+            ----
+sudo apt-get autoremove         ---- remove Dependencies
+sudo apt-get autoclean
+--------------------------------------------------------------------
+----------------- steps to pgadmin in linux --------------------------
+- pre requirements
+sudo apt install libgmp3-dev build-essential libssl-dev
+
+- venv related Dependencies
+sudo apt install python3-virtualenv python3-dev libpq-dev
+
+- in venv
+pip install https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v8.11/pip/pgadmin4-8.11-py3-none-any.whl
+
+
+- make config file
+sudo nano pgadmin-env/lib/python3.10/site-packages/pgadmin4/config_local.py
+                                                                  ^^^^^^   (LOCAL)
+-add content
+import os
+DATA_DIR = os.path.realpath(os.path.expanduser(u'~/.pgadmin/'))
+LOG_FILE = os.path.join(DATA_DIR, 'pgadmin4.log')
+SQLITE_PATH = os.path.join(DATA_DIR, 'pgadmin4.db')
+SESSION_DB_PATH = os.path.join(DATA_DIR, 'sessions')
+STORAGE_DIR = os.path.join(DATA_DIR, 'storage')
+SERVER_MODE = False
+AZURE_CREDENTIAL_CACHE_DIR = os.path.join(DATA_DIR, 'azurecredentialcache')
+
+- start pgadmin server/service --------------------------------------------
+python pgadmin-env/lib/python3.10/site-packages/pgadmin4/pgAdmin4.py
+python3 pgadmin-env/lib/python3.10/site-packages/pgadmin4/pgAdmin4.py
+- access at
+http://127.0.0.1:5050
+
+for easy startup  - - - 
+-- make alias
+echo "alias startPg='~/pgadmin-env/bin/python pgadmin-env/lib/python3.10/site-packages/pgadmin4/pgAdmin4.py'" >> ~/.bashrc
+
+- then
+source ~/.bashrc
+startPg &
+------------------------------------------------------------------------------------------
+current user pass:
+postgres WITH PASSWORD 'pgsqlpass'
+to enter into shell---
+psql
+-------------MORE - SHELL- login------------------
+
+psql -h localhost -U nijitek -d your_database_name
+psql -h localhost -U nijitek -d nijitekdigital
+::::nijitek@123
+------------------------------------
+psql -h localhost -U postgres -d postgres   #req password
+::::sqlpass
+
+set PGPASSWORD=your_postgres_password          #to set pasword in env 
+psql -U postgres                                #without pass in cmd
+
+sudo -u postgres psql                      #to enter into shell without password
+-- - shell cmds----------------------------------------------------------------
+\du
+\l                                               #to get list of all databases
+\dt                                           # to see into tables 
+\dt+                                             #to see into table with details
+\q
+\c - <username>
+\c - nijitest                                   #login as other user
+--for privileges
+\dp recognition_results
+--see structure
+\d recognition_results
+psql -U postgres                                # just to login as superuser(postgres)
+psql -U <username> -d <database_name>
+psql -U postgres -d <database_name>
+
+--------------shell-querys-----------
+_________user___________
+CREATE USER niji WITH PASSWORD 'nijibook@123';
+--with superuser
+CREATE USER newusername WITH PASSWORD 'password' SUPERUSER;
+ALTER USER postgres WITH PASSWORD 'pgsqlpass';
+ALTER USER niji CREATEDB;
+DROP USER <username>;
+--superuser 
+ALTER USER username WITH SUPERUSER;
+
+________DATABASE_________
+CREATE DATABASE <database_name> OWNER niji;
+CREATE DATABASE nijiDB OWNER niji;
+
+DROP DATABASE <database_name>;
+
+
+-- Terminate all connections to the database
+SELECT pg_terminate_backend(pid)
+FROM pg_stat_activity
+WHERE datname = '<database_name>';
+
+________inserte into table_____________
+INSERT INTO table_name (column1, column2, column3, ...)
+VALUES (value1, value2, value3, ...);
+
+INSERT INTO customers (id, name, email)
+VALUES (1, 'John Doe', 'john@example.com');
+
+----------as other user---------
+-- Grant INSERT privileges to the user 'otheruser' on the table 'example_table'
+GRANT INSERT ON example_table TO otheruser;
+
+-- Connect to the PostgreSQL database using a user account with necessary permissions
+psql -h localhost -U admin_user -d nijiDB
+
+-- Insert data into the 'example_table' on behalf of 'otheruser'
+INSERT INTO example_table (column1, column2) VALUES ('value1', 'value2');
+
+--all access to recognition table ----
+GRANT ALL PRIVILEGES ON TABLE recognition_results TO your_user;
+
+
+----------as user----------
+psql -h localhost -U other_user -d nijiDB
+psql -h localhost -U niji -d nijidb
+
+INSERT INTO table_name (column1, column2)
+VALUES ('value1', 'value2');
+
+___________rename database____________
+ALTER DATABASE nijidb RENAME TO "nijiDB";
+
+___________create table_____________
+CREATE TABLE customer (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100),
+    age INT
+);
+
+--------inserte value
+INSERT INTO customer (name, age) VALUES ('John', 30);
+INSERT INTO users (name, age) VALUES ('Jane', 25);
+
+---------get values DQL
+SELECT * FROM customer;
+
+
+--------------servar op by cmd--------------------------
+pg_ctl status -D "C:\Program Files\PostgreSQL\16\data"
+pg_ctl start -D "C:\Program Files\PostgreSQL\16\data"
+pg_ctl restart -D "C:\Program Files\PostgreSQL\16\data"
+pg_ctl stop -D "C:\Program Files\PostgreSQL\16\data"
+
+"C:\Program Files\PostgreSQL\16\bin\pg_ctl" start -D "C:\Program Files\PostgreSQL\16\data"
+
+
+-------------------------------------END SHELL---------------------------------------------------------
+
+- - server - - 
+sudo systemctl status postgresql
+sudo systemctl start postgresql
+sudo systemctl stop postgresql
+
+--------without systemctl----------- - - - - 
+sudo pg_createcluster 14 main --start       --creates a cluster/server named as main for version 14
+pg_lsclusters                               --to see list of cluster
+
+sudo service postgresql stop
+sudo service postgresql restart
+sudo service postgresql status
+sudo service postgresql start
+
+--------------to edit postgresql-config-------
+sudo nano /etc/postgresql/14/main/postgresql.conf
+
+---------------to edit pg_hba-config-----------
+sudo nano /etc/postgresql/14/main/pg_hba.conf
+
+------------ip info----------------------
+ip addr | grep eth0
+
+username : nijitest
+DB       : nijitestdb
+
+_______superuser
+email:irfansipai0@gmail.com
+pass: pass@admin
+----------------extra misc.------------------
+sudo apt update
+sudo apt install iptables iptables-persistent nftables
+
+sudo ufw allow 5432/tcp
+sudo ufw enable

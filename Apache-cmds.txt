@@ -1,0 +1,89 @@
+admin-------------------
+name:
+irfan
+pass:
+admin@irfan
+
+===================== Apache ============================
+a2dissite ems.conf
+rm etc/apache2/sites-available/ems.conf
+service apache2 reload
+a2ensite ems.conf
+chown -R www-data:www-data .
+service apache2 reload
+
+linux:ifconfig ip============
+172.29.130.172
+
+========final==================================================================================
+sudo apt update
+sudo apt install apache2
+sudo apt update
+sudo apt install libapache2-mod-wsgi
+
+--enable mod module esgi
+sudo a2enmod wsgi
+--verify
+sudo apache2ctl -M
+
+
+--verify
+sudo service apache2 status
+sudo service apache2 start
+sudo service apache2 stop
+sudo service apache2 restart
+
+
+--setup proj  (git clone ,,install req ,,)
+--create venv linux
+python3 -m venv venv
+source venv/bin/activate
+
+python manage.py collectstatic
+
+--create config file
+sudo nano /etc/apache2/sites-available/miproj.conf 
+
+--write to proj.conf file
+writing... writing... writing....
+
+--ensite  // restart
+# Ubuntu/Linux
+sudo a2ensite miproj.conf   
+# Restart Apache
+sudo apachectl restart  
+--or
+sudo service apache2 restart
+--or
+service apache2 reload
+
+
+--permission
+sudo chown -R _www:_www /path/to/yourproject   # macOS
+sudo chown -R www-data:www-data /path/to/yourproject   # Ubuntu/Linux
+
+--runserver
+python manage.py runserver 0:80
+
+at url
+https://172.29.130.172:80/
+
+
+
+---another wsgi mod ----------
+sudo apt update
+sudo apt install apache2-dev python3-dev
+
+
+cd ~   # or any directory where you want to download the source code
+wget https://github.com/GrahamDumpleton/mod_wsgi/archive/refs/tags/4.9.0.tar.gz
+
+
+tar -xzvf 4.9.0.tar.gz
+cd mod_wsgi-4.9.0
+./configure --with-python=/usr/bin/python3
+make
+
+
+sudo make install
+sudo a2enmod wsgi

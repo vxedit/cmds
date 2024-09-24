@@ -1,0 +1,46 @@
+exipip freeze | xargs pip uninstall -y
+pip freeze>requirements.txt
+pip list --format=freeze > requirements.txt
+pip install -r requirements.txt
+-----------remove cache-----------
+pip cache purge
+
+---------terminal-----------
+python3 -m venv vvv
+source vvv/bin/activate
+
+---------pipenv---------
+pipenv --python 3.8                 -creates for specific version
+pipenv install             	        -create env
+pipenv install celery redis    	        -install package
+pip install celery redis
+pipenv uninstall requests
+pipenv shell		   	            -activate 
+exit			   	                -deactivate
+pipenv --rm				-remove environment
+pipenv sync                  -sync packages from lock file
+pipenv lock -r > requirements.txt    -requirement
+pipenv requirements > requirements.txt
+
+pipenv install -r requirements.txt   -install req
+
+
+
+----------------cehcking playwrite browser-----------
+
+Removing unused browser at C:\Users\irfan\AppData\Local\ms-playwright\chromium-1105
+Removing unused browser at C:\Users\irfan\AppData\Local\ms-playwright\firefox-1440
+Removing unused browser at C:\Users\irfan\AppData\Local\ms-playwright\webkit-1983 
+Downloading Chromium 125.0.6422.26 (playwright build v1117) from https://playwright.azureedge.net/builds/chromium/1117/chromium-win64.zip
+
+Downloading Chromium 125.0.6422.26 (playwright build v1117) from https://playwright-akamai.azureedge.net/builds/chromium/1117/chromium-win64.zip
+136.2 MiB [====================] 100% 0.0s
+Chromium 125.0.6422.26 (playwright build v1117) downloaded to C:\Users\irfan\AppData\Local\ms-playwright\chromium-1117
+Downloading Firefox 125.0.1 (playwright build v1449) from https://playwright.azureedge.net/builds/firefox/1449/firefox-win64.zip
+84.8 MiB [====================] 100% 0.0s
+Firefox 125.0.1 (playwright build v1449) downloaded to C:\Users\irfan\AppData\Local\ms-playwright\firefox-1449
+Downloading Webkit 17.4 (playwright build v2003) from https://playwright.azureedge.net/builds/webkit/2003/webkit-win64.zip
+48.5 MiB [====================] 100% 0.0s
+Webkit 17.4 (playwright build v2003) downloaded to C:\Users\irfan\AppData\Local\ms-playwright\webkit-2003
+
+

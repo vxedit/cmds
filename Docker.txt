@@ -1,0 +1,95 @@
+verify---------------------------------------------------------
+docker --version
+docker-compose --version
+
+View running containers:-----------------------------------------
+docker ps
+docker ps -q | wc -l
+
+- all container--------
+docker ps -a
+
+start stop, container--
+docker start <container_name_or_id>
+docker stop <container_name_or_id>
+docker restart <container_name_or_id>
+at a file-------
+docker compose -f docker-compose.dev.ui.yml up -d
+
+stop all---
+docker stop $(docker ps -q)
+
+build container by compose --build for forced rebuild-------------------------------------------------
+docker-compose up --build
+
+--in detached(background)----
+docker-compose up -d
+docker compose up -d
+---Stop the containers/services and removes all
+docker-compose down
+
+--start/stop without build----
+docker-compose start
+docker-compose stop
+
+# start/stop/status running docker
+sudo systemctl status docker
+sudo systemctl start docker
+sudo systemctl stop docker
+
+remove container---------
+docker rm <container_name_or_id>
+- all---
+docker container prune
+
+------------ docke images-------------------------
+run container by images----
+docker run <image_name_or_id>
+
+-d to run in detached mode, -it for interactive mode:
+docker run -d -it <image_name_or_id>
+
+docker run -p 8000:8000 transformer-prediction
+
+by nginx==========
+docker run -p 80:80 transformer-prediction
+running on : http://localhost/
+
+at ip=============
+docker run -p 192.168.1.104:8000:80 transformer-prediction
+docker run -d -p 192.168.1.138:8000:80 irfans4docker/transformer-prediction
+
+
+
+list all docker images--
+docker images
+list num of available images---
+docker images -q | wc -l
+
+build image by dockerfile---last dot is suggetting current directory
+docker build -t <image_name> <path_to_dockerfile>
+docker build -t myapp:1.0 .
+
+remove images------------
+docker rmi <image_name_or_id>
+- all --
+docker image prune -a
+---------------------push/pull---------------------------------------------
+tagging image beofre pushing=========
+docker tag <image_name> <tag>
+docker tag Transformer-prediction irfans4docker/transformer-prediction:latest
+--docker login--
+docker login
+--push--
+docker push irfans4docker/transformer-prediction:latest
+pull--
+docker pull irfans4docker/transformer-prediction
+-------------------------------------------------------------------------
+
+Access the Django container:Running commands inside the container, like python manage.py or debugging issues within the container.--------------------------------------
+web: The name of the service 
+docker-compose exec: to run commands in running service container
+docker-compose exec web bash
+
+compreface-Dashboard---------
+Open http://localhost:8000/login
