@@ -1,4 +1,4 @@
-verify---------------------------------------------------------
+`verify---------------------------------------------------------
 docker --version
 docker-compose --version
 
@@ -15,6 +15,9 @@ docker stop <container_name_or_id>
 docker restart <container_name_or_id>
 at a file-------
 docker compose -f docker-compose.dev.ui.yml up -d
+docker compose -f docker-compose.yml up --build
+if not using hot reloading----
+docker-compose -f docker-compose.dev.ui.yml restart
 
 stop all---
 docker stop $(docker ps -q)
@@ -36,6 +39,12 @@ docker-compose stop
 sudo systemctl status docker
 sudo systemctl start docker
 sudo systemctl stop docker
+
+# stop docker related process
+sudo pkill -f docker
+
+# from boot up 
+sudo systemctl disable docker
 
 remove container---------
 docker rm <container_name_or_id>
@@ -84,6 +93,23 @@ docker login
 docker push irfans4docker/transformer-prediction:latest
 pull--
 docker pull irfans4docker/transformer-prediction
+
+irfanautobits
+12cd07065791
+docker tag 12cd07065791 irfanautobits/compreface-fe:split
+docker tag 8a1007c6b41d irfanautobits/compreface-fe:latest
+docker tag 3711e7044cc2 irfanautobits/compreface-core:latest
+docker tag 785bd747c064 irfanautobits/compreface-admin:latest
+docker tag a181035ed230 irfanautobits/compreface-api:latest
+docker tag f2c3486cc13b irfanautobits/compreface-postgres-db:latest
+
+docker push irfanautobits/compreface-fe:split
+docker push irfanautobits/compreface-fe:latest
+docker push irfanautobits/compreface-core:latest
+docker push irfanautobits/compreface-admin:latest
+docker push irfanautobits/compreface-api:latest
+docker push irfanautobits/compreface-postgres-db:latest
+
 -------------------------------------------------------------------------
 
 Access the Django container:Running commands inside the container, like python manage.py or debugging issues within the container.--------------------------------------
@@ -91,5 +117,12 @@ web: The name of the service
 docker-compose exec: to run commands in running service container
 docker-compose exec web bash
 
-compreface-Dashboard---------
-Open http://localhost:8000/login
+docker exec------------------------------------------
+open-cmd-----------
+docker exec -it funny_cannon /bin/bash
+open path--
+docker exec funny_cannon ./benchmark
+
+--------------------operations inside container------------------------
+copy contents from container---------------
+docker cp <container_name_or_id>:<path_within_container> <destination_on_host>

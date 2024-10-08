@@ -1,0 +1,210 @@
+------------- installation -------------------
+install arp ======
+sudo apt-get install arp-scan
+sudo apt-get remove --purge arp-scan
+
+install nmap =======
+sudo apt-get install nmap
+sudo apt-get remove --purge nmap
+
+dependency and residua cleanup ================
+sudo apt-get autoremove
+sudo apt-get clean
+
+------------------------network-hardware check----------------------------------------------
+Check for Kernel Modules ================
+lsmod | grep <driver_name>
+
+list usb ===============
+lsusb
+
+logs ============
+dmesg | grep -i wlan
+dmesg | grep -i firmware
+
+----------------------------------interfaces -------------------------------------
+List Network Interfaces:
+ip link show
+
+sudo arp-scan --interface=<interface> --localnet
+sudo nmap -sP 192.168.1.0/24
+
+list of rf block---
+rfkill list
+
+unblk-----
+sudo rfkill unblock wifi
+
+start ------
+sudo ip link set wlp2s0 up
+sudo ip link set <interface> up
+
+restart wifi--------
+sudo modprobe -r iwlwifi
+sudo modprobe iwlwifi
+
+restart network manager-----
+sudo systemctl restart NetworkManager
+
+
+--------------------- for windows & linux == (req actively communicating devices)
+arp -a
+--------------------- arp ---------------------
+
+Run arp-scan ====== wlan0 for Wi-Fi
+sudo arp-scan --interface=INTERFACE --localnet
+sudo arp-scan --interface=wlan0 --localnet
+
+-------------------------------------- device scan ------------------------------------------------------------------
+Scan the network =========== Replace 192.168.1.0/24 with your network's IP range.
+from 192.168.1.0 to 192.168.1.255 ==========
+sudo nmap -sn 192.168.1.0/24
+
+for each =====
+nmap -sn 192.168.1.0/24 192.168.2.0/24 192.168.3.0/24
+nmap -sn 192.168.1.0-255 192.168.2.0-255 192.168.3.0-255
+
+for range ===== 192.168.1.0 to 192.168.3.255
+nmap -sn 192.168.1.0-192.168.3.255
+
+with outer range ===== 192.168.0.0 to 192.168.255.255
+nmap -sn 192.168.0.0/16
+
+host-check ---------------------------------------- host ------------------------------------
+uname -n
+hostname
+
+scan wih os -------------------------------------- os ------------------------------------------
+-A: This option enables OS detection, version detection, script scanning, and traceroute ( from 192.168.1.0 to 192.168.1.255)
+sudo nmap -A 192.168.1.0/24
+sudo nmap -A 192.168.1.1
+-O: OS detection only ===============
+sudo nmap -O 192.168.1.0/24
+
+port scan =============== ------------------------ ports ----------------------------------
+ first 1000 ports default ===============
+nmap 192.168.1.1
+
+all available ports (0-65535) ===============
+nmap -p- 192.168.1.1
+
+Scan Specific Ports ===============
+nmap -p 22,80,443 192.168.1.1
+
+=============== SYN scan ===============
+sudo nmap -sS 192.168.1.1
+
+
+
+------------------------ ref --------------------------------------------------------------------------------
+TCP (Transmission Control Protocol) and UDP (User Datagram Protocol)
+sends knowlegment                        without knowlegment
+REpresentational State Transfer (http is impleamentation based on REST standard)  arch on web follows REST standards
+API application programming interface
+FTP         uses port         |   21
+HTTP        uses port         |   80 (Hypertext Transfer Protocol)
+HTTPS       uses port         |  443 http + tls/ssl = https
+SSH         uses port         |   22
+SMTP        uses port         |   25
+DNS         uses port         |   53
+MSRPC       uses port         |  135 Microsoft RPC (Remote Procedure Call) 
+RTSP        uses port         |  554 (Real-Time Streaming Protocol)
+http-alt    uses port         | 8000 
+netbios-ssn uses port         | 139   (file and printer sharing on Windows networks.)
+msds        uses port         | 445   microsoft-ds (Microsoft-DS (Directory Services))  file and printer sharing via SMB. It's the successor to port 139.
+WSD         uses port         | 5357  wsdapi Web Services for Devices 
+RealPlayer  uses port         | 7070  realserver RealPlayer and RealServer for streaming media.
+MQTT        uses port         | 1883 
+MQTT        uses port         | 8883 (secured) 
+   
+phy --> data link --> Network (ip) --> transport (tcp) --> session --> presentation (ssl)--> application (http)
+000 --> 000000000 --> router 
+========================================
+PORT    STATE SERVICE  
+MQTT        uses port         | 1883 
+MQTT        uses port         | 8883 (secured) 
+ip_pi:9000      docker dashboard mqtt pi
+ip_pi:1880      node-red
+pi_ip:3000      grafana
+
+192.168.1.152
+MAC Address: 1C:1B:B5:FE:66:B3 (Intel Corporate)  printer
+
+router
+MAC Address: 40:ED:00:52:45:C9
+
+my note 8
+1C-CC-D6-E4-A2-21
+-------- apple with more ports ---------------
+Nmap scan report for 192.168.1.100
+Host is up (0.023s latency).
+Not shown: 990 closed tcp ports (reset)
+PORT     STATE SERVICE
+22/tcp   open  ssh
+53/tcp   open  domain
+88/tcp   open  kerberos-sec
+445/tcp  open  microsoft-ds
+3333/tcp open  dec-notes
+5000/tcp open  upnp
+5900/tcp open  vnc
+7000/tcp open  afs3-fileserver
+8000/tcp open  http-alt
+8080/tcp open  http-proxy
+MAC Address: F8:4D:89:80:C2:65 (Apple)
+===========================================================================================================================
+================= change mac in windows by regedit ===========
+Open the Registry Editor:
+Press Win + R, type `regedit`, and press Enter.
+
+`HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{4d36e972-e325-11ce-bfc1-08002be10318}`  0002
+
+DriverDesc value `Intel(R) Dual Band Wireless-AC 8265`
+Name this new value `NetworkAddress`.
+Set the New MAC Address:(e.g., 40ED005245C9).
+Click OK to save the changes.
+Restart Your Computer:
+----------------------------------------------------------------------------------------------------------
+157, 152, 149
+------------- mac spoofing-linux ------------------
+ip link show
+sudo ip link set wlan0 down
+sudo ip link set wlan0 address 40:ED:00:52:45:C9
+sudo ip link set wlan0 up
+
+ip link show wlan0
+netsh wlan show drivers
+
+hotspot in mint 1 way------------
+create host--
+netsh wlan set hostednetwork mode=allow ssid=YourSSID key=YourPassword
+netsh wlan start hostednetwork
+netsh wlan stop hostednetwork
+
+2 way ------------
+Steps to Create a Wi-Fi Hotspot on Linux Mint
+Open Network Settings:
+
+Click on the network icon in the system tray (usually in the bottom-right corner of the screen).
+Select "Network Settings" from the dropdown menu.
+Create a New Wi-Fi Network:
+
+In the Network Settings window, click on the "Wi-Fi" tab.
+Click on the "+" (plus) button to create a new Wi-Fi network.
+Configure the Hotspot:
+
+In the "Create New Wi-Fi Network" dialog:
+SSID: Enter the name of your Wi-Fi network (the name that other devices will see).
+Mode: Choose "Hotspot."
+Wi-Fi Security: Select "WPA & WPA2 Personal" to secure your network and set a password.
+Password: Enter a password that clients will use to connect to your Wi-Fi network.
+Save and Activate:
+
+After configuring the hotspot, click "Save."
+Your laptop should now start broadcasting the SSID, and other devices can connect to it using the password you set.
+Start the Hotspot:
+
+To start the hotspot, simply click on the network icon again, and select your newly created network.
+----------------------------------------------------------------------------------------------------------
+package consistency------------------
+vlc rtsp://autobits:Autobits@123@192.168.1.204:554 --verbose 2
+ffmpeg -i rtsp://autobits:Autobits@123@192.168.1.204:554 -vf "showinfo" -f null -

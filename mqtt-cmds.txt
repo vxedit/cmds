@@ -1,0 +1,151 @@
+on-mosquitto------------
+sudo apt-get install mosquitto
+sudo systemctl start mosquitto
+sudo systemctl stop mosquitto
+sudo systemctl restart mosquitto
+sudo systemctl status mosquitto
+
+start-mosquitto-on-boot===================
+sudo systemctl enable mosquitto
+
+mosquitto config ======
+sudo nano /etc/mosquitto/mosquitto.conf
+===
+cd /etc/mosquitto/conf.d
+sudo nano my_config.conf
+verify config==
+mosquitto -c /etc/mosquitto/mosquitto.conf -v
+
+allow external:
+listener 1883
+allow_anonymous true
+
+================================
+
+check mosquitto listening port ==========
+sudo netstat -tuln | grep 1883
+
+mosquitto log =======
+sudo tail -f /var/log/mosquitto/mosquitto.log
+
+topic subscriber =====
+mosquitto_sub -h localhost -p 1883 -t "sensor/data/config"
+
+publisher =====
+mosquitto_pub -h 192.168.1.134 -p 1883 -t "sensor/data/config" -m 'connected_pc'
+mosquitto_pub -h 192.168.1.134 -p 1883 -t "sensor/data/config" -m '{"test_key":"message_pc"}'
+with debug =
+mosquitto_pub -h 192.168.1.134 -p 1883 -t "sensor/data/config" -m '{"test_key": "message_pc"}' -d
+at file ---
+mosquitto_pub -h 192.168.1.134 -p 1883 -t "sensor/data/config" -f config.json
+
+on-same ======
+publish:
+mosquitto_pub -h localhost -p 1883 -t "sensor/data/config" -m '{"test": "message"}'
+mosquitto_pub -h localhost -p 1883 -t "sensor/data/config" -m '{"test_key": "message_pi"}'
+
+subscribe:
+mosquitto_sub -h localhost -p 1883 -t "sensor/data/config"
+
+bypass firewall ========
+sudo ufw allow 1883/tcp
+sudo ufw status
+======== pi ============================================================
+check ssh-config ===========
+sudo nano /etc/ssh/sshd_config
+
+ssh ========== port 22 for SSH
+sudo systemctl start ssh
+sudo systemctl restart ssh
+sudo systemctl status sshd
+
+host-check=======
+uname -n
+hostname
+
+ssh username@pi-ip | host-name
+ssh root@192.168.1.134 -p [8080] default 22
+ssh root@192.168.1.134
+
+pass ===
+*c2Qg&wz{v*g?aYf6>cB
+Ps_jHhZW@_ZdcAKA!eL9
+TQr!*WViH!m-W2GG
+
+ping == from pc to pi ======  D8:3A:DD:F3:F0:1C == Autobits-Fresh.local
+ping 192.168.1.145
+ping == from pi to pc ======
+ping 192.168.1.105
+
+check port ======
+telnet 192.168.1.134 1883
+
+start ftp ======= FTP uses port 21
+sudo systemctl start vsftpd
+sudo systemctl status vsftpd
+
+start ftp on boot =====
+sudo systemctl enable vsftpd
+
+check vsftpd-config ====
+sudo nano /etc/vsftpd.conf
+
+firewall =======
+sudo ufw allow 21/tcp
+sudo ufw status
+
+=========== ftp-config ====================
+config =
+anonymous_enable=NO
+local_enable=YES
+write_enable=YES
+listen=NO
+listen_ipv6=YES
+===========================================
+============ network-config ================
+logs --------------
+sudo journalctl -u dhcpcd
+sudo cat /var/log/syslog | grep wlan0
+
+network-config -----------
+sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+
+config -----------------
+network={
+    ssid="Your_Hotspot_SSID"
+    psk="Your_Hotspot_Password"
+    priority=10
+}
+-------------------------------
+restart ---------
+sudo systemctl restart dhcpcd
+
+----------------NetworkManager command-line interface ------------
+list -----
+nmcli dev wifi list
+status -----------
+nmcli device status
+ifconfig wlan0
+
+connect ------
+sudo nmcli dev wifi connect "Your_SSID" password "Your_WiFi_Password"
+disconnect ----
+sudo nmcli device disconnect wlan0
+
+permenente ------------
+sudo nmcli connection add type wifi ifname wlan0 ssid "Your_SSID" wifi-sec.key-mgmt wpa-psk wifi-sec.psk "Your_WiFi_Password" ipv4.route-metric 1000 ipv4.dns 8.8.8.8 && 
+nmcli con up "Your_SSID"
+
+--------- dherya ---------------------
+nmcli con add type wifi con-name Autobits_7G ifname wlan0 ssid "Autobits_7G" && 
+nmcli con modify Autobits_7G wifi-sec.key-mgmt wpa-psk && 
+nmcli con modify Autobits_7G wifi-sec.psk "Victory#2024" && 
+nmcli connection modify id Autobits_7G ipv4.route-metric 1000 && 
+nmcli connection modify id Autobits_7G ipv4.dns 8.8.8.8 && 
+nmcli con up Autobits_7G
+-----------------------------------------------------------------------------------------------------------------------
+compile---
+sudo apt-get install patchelf
+nuitka --standalone --follow-imports --output-dir=output pi-subscriber.py
+./pi-subscriber.bin
+

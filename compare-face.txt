@@ -78,3 +78,18 @@ irfan@irfan-Latitude-5480:~/autobits$ ssh-keygen -f "/home/irfan/.ssh/known_host
 # Host 192.168.1.161 found: line 4
 /home/irfan/.ssh/known_hosts updated.
 Original contents retained as /home/irfan/.ssh/known_hosts.old
+
+setting up ui dev-------
+sudo apt update
+sudo apt install nodejs npm
+
+sudo npm install -g @angular/cli
+
+dependency---
+npm install --legacy-peer-deps
+verify-----
+ng version
+run------
+npm run start
+or-
+npm start
