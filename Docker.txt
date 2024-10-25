@@ -96,11 +96,11 @@ docker pull irfans4docker/transformer-prediction
 
 irfanautobits
 12cd07065791
-docker tag 12cd07065791 irfanautobits/compreface-fe:split
-docker tag 8a1007c6b41d irfanautobits/compreface-fe:latest
-docker tag 3711e7044cc2 irfanautobits/compreface-core:latest
-docker tag 785bd747c064 irfanautobits/compreface-admin:latest
-docker tag a181035ed230 irfanautobits/compreface-api:latest
+docker tag 571116578b98 irfanautobits/compreface-fe:split
+docker tag 571116578b98 irfanautobits/compreface-fe:latest
+docker tag 12ad9fb49524 irfanautobits/compreface-core:latest
+docker tag 069a1a7e3d56 irfanautobits/compreface-admin:latest
+docker tag 4deb8278d70f irfanautobits/compreface-api:latest
 docker tag f2c3486cc13b irfanautobits/compreface-postgres-db:latest
 
 docker push irfanautobits/compreface-fe:split
@@ -126,3 +126,8 @@ docker exec funny_cannon ./benchmark
 --------------------operations inside container------------------------
 copy contents from container---------------
 docker cp <container_name_or_id>:<path_within_container> <destination_on_host>
+docker cp /path/on/host <container_name_or_id>:/path/inside/container
+docker cp compreface-ui:/path/inside/container /path/on/host
+docker cp /home/irfan/editing by pyhon/Autobit-proj/compreface-git/CompreFace/ui/src/styles/colors.scss compreface-ui:/path/inside/container
+docker cp /home/irfan/editing\ by\ pyhon/Autobit-proj/compreface-git/CompreFace/embedding-calculator/src/services/facescan/plugins/facenet/facenet.py compreface-core:/src/services/facescan/plugins/facenet/facenet.py
+

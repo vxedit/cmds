@@ -57,6 +57,8 @@ AZURE_CREDENTIAL_CACHE_DIR = os.path.join(DATA_DIR, 'azurecredentialcache')
 - start pgadmin server/service --------------------------------------------
 python pgadmin-env/lib/python3.10/site-packages/pgadmin4/pgAdmin4.py
 python3 pgadmin-env/lib/python3.10/site-packages/pgadmin4/pgAdmin4.py
+current ************
+python3 pgadminvenv/lib/python3.12/site-packages/pgadmin4/pgAdmin4.py
 - access at
 http://127.0.0.1:5050
 
@@ -91,8 +93,7 @@ sudo -u postgres psql                      #to enter into shell without password
 \dt                                           # to see into tables 
 \dt+                                             #to see into table with details
 \q
-\c - <username>
-\c - nijitest                                   #login as other user
+\c database              # switch to a database 
 --for privileges
 \dp recognition_results
 --see structure
@@ -216,3 +217,27 @@ sudo apt install iptables iptables-persistent nftables
 
 sudo ufw allow 5432/tcp
 sudo ufw enable
+
+docker container in bash and see database -----------------------
+docker exec -it compreface-postgres-db bash
+
+login -----
+psql -U postgres
+
+list databaes-------
+\l
+
+switch to a database ------
+\c database
+
+list tables------
+\dt
+
+list table contents----------
+SELECT * FROM tablename;
+
+from pgadmin------------------------------------------------
+expose port-----
+docker run -d --name compreface-postgres-db -p 5432:5432 exadel/compreface-postgres-db:1.2.0
+find ip(optional)-----------
+docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' compreface-postgres-db

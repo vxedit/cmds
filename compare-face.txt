@@ -1,3 +1,6 @@
+git lab-------
+irfan-autobits
+balcca1@stibotua
 pip install openpyxl pandas opencv-python compreface-sdk sqlalchemy psycopg2
 pip install urllib3==1.25.11
 
@@ -93,3 +96,65 @@ run------
 npm run start
 or-
 npm start
+
+g-drives
+https://drive.google.com/uc?id=1PxK72O-NROEz8pUGDDFRDYF4AABbvWiC
+https://drive.google.com/uc?id={self.google_drive_id}
+
+age
+    ml_models = (
+        ('22801', '1PxK72O-NROEz8pUGDDFRDYF4AABbvWiC'),
+    )
+gender
+    ml_models = (
+        ('21936', '1j9B76U3b4_F9e8-OKlNdOBQKa2ziGe_-'),
+    )
+
+
+facenet::calculator
+   ml_models = (
+        # VGGFace2 training set, 0.9965 LFW accuracy
+        ('20180402-114759', '1im5Qq006ZEV_tViKh3cgia_Q4jJ13bRK', (1.1817961, 5.291995557), 0.4),
+        
+        # CASIA-WebFace training set, 0.9905 LFW accuracy
+        ('20180408-102900', '100w4JIUz44Tkwte9F-wEH0DOFsY-bPaw', (1.1362496, 5.803152427), 0.4),
+        
+        # CASIA-WebFace-Masked, 0.9873 LFW, 0.9667 LFW-Masked (orig model has 0.9350 on LFW-Masked)
+        ('inception_resnetv1_casia_masked', '1FddVjS3JbtUOjgO0kWs43CAh0nJH2RrG', (1.1145709, 4.554903071), 0.6)
+    )
+
+facenet::    LABELS = ('without_mask', 'with_mask', 'mask_weared_incorrect')
+    ml_models = (
+        ('inception_v3_on_mafa_kaggle123', '1nhmv4Pd8nnV8XHv6vlf6RCpwQLow78zS'),
+    )
+
+insightface::facedetectot
+    ml_models = (
+        ('retinaface_mnet025_v1', '1ggNFFqpe0abWz6V1A82rnxD6fyxB8W2c'),
+        ('retinaface_mnet025_v2', '1EYTMxgcNdlvoL1fSC8N1zkaWrX75ZoNL'),
+        ('retinaface_r50_v1', '1LZ5h9f_YC5EdbIZAqVba9TKHipi90JBj'),
+    )
+
+insightface::calculator
+    ml_models = (
+        ('arcface_mobilefacenet', '17TpxpyHuUc1ZTm3RIbfvhnBcZqhyKszV', (1.26538905, 5.552089201), 200),
+        ('arcface_r100_v1', '11xFaEHIQLNze3-2RUV1cQfT-q6PKKfYp', (1.23132175, 6.602259425), 400),
+        ('arcface_resnet34', '1ECp5XrLgfEAnwyTYFEhJgIsOAw6KaHa7', (1.2462842, 5.981636853), 400),
+        ('arcface_resnet50', '1a9nib4I9OIVORwsqLB0gz0WuLC32E8gf', (1.2375747, 5.973354538), 400),
+        ('arcface-r50-msfdrop75', '1gNuvRNHCNgvFtz7SjhW82v2-znlAYaRO', (1.2350148, 7.071431642), 400),
+        ('arcface-r100-msfdrop75', '1lAnFcBXoMKqE-SkZKTmi6MsYAmzG0tFw', (1.224676, 6.322647217), 400),
+        
+        # CASIA-WebFace-Masked, 0.9840 LFW, 0.9667 LFW-Masked (orig mobilefacenet has 0.9482 on LFW-Masked)
+        ('arcface_mobilefacenet_casia_masked', '1ltcJChTdP1yQWF9e1ESpTNYAVwxLSNLP', (1.22507105, 7.321198934), 200),
+    )
+insightface:landmarks
+    slug = 'landmarks2d106'
+    ml_models = (
+        ('2d106det', '18cL35hF2exZ8u4pfLKWjJGxF0ySuYM2o'),
+    )
+
+insightface::    LABELS = ('without_mask', 'with_mask', 'mask_weared_incorrect')
+    ml_models = (
+        ('mobilenet_v2_on_mafa_kaggle123', '1DYUIroNXkuYKQypYtCxQvAItLnrTTt5E'),
+        ('resnet18_on_mafa_kaggle123', '1A3fNrvgrJqMw54cWRj47LNFNnFvTjmdj')
+    )

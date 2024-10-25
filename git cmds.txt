@@ -83,11 +83,18 @@ git push origin --delete master
 ------------unrelated history-------------
 git pull origin main --allow-unrelated-histories
 
-remove commit-----------
+-----------remove commit-----------
 without changeing current code--------
 git reset --soft HEAD~1
 changing current code-------
 git reset --hard HEAD~1
+
+-------forced push-------------
+git push origin <branch-name> --force
+---------revert commit--------------------
+git revert to create a new commit that undoes the changes from the previous commit. ---------
+git revert HEAD
+git push origin <branch-name>
 
 ------------- user -----------------
 Current User Config:
@@ -104,7 +111,7 @@ git config --global user.email "your-email@example.com"
 git config --local user.name "irfan-autobits"
 git config --local user.email "irfan.autobits@gmail.com"
 
-for release-----------
+----------------------------for release-----------
 git add .
 git commit -m "Prepare release v1.0.0"
 

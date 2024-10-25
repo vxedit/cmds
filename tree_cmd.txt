@@ -5,16 +5,21 @@ tree -a -I node_modules
 exclude a list from a file-----------
 tree -a | grep -v -f exclude.txt
 file output ----------
-tree -a | grep -v -f .gitignore > tree2.txt
+git ls-files | tree -a --fromfile > tree2.txt
 
 tree -a > tree.txt
 34 directories, 157 files
 
 finding files, its content------------
 find . -name "facenet.py"
-grep -r "similarity" .
+grep -r "__tablename__" .
+CompreFace is starting ...
+pom.xml
+src.services.facescan.plugins.facenet.facenet
+find_faces
 Euclidean
 Cosine
 similarity
 run tree-content--
 ./content-tree.sh src/services/utils > content-tree.txt
+<div _ngcontent-eqe-c107="" class="title"> CompreFace is starting ... </div>
