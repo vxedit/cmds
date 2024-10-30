@@ -106,7 +106,7 @@ git config user.email "your-email@example.com"
 
 global:
 git config --global user.name "Irfan"
-git config --global user.email "your-email@example.com"
+git config --global user.email "irfan.sipai.py@outlook.com"
 
 git config --local user.name "irfan-autobits"
 git config --local user.email "irfan.autobits@gmail.com"

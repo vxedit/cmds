@@ -1,6 +1,9 @@
 git lab-------
 irfan-autobits
 balcca1@stibotua
+git-hub--
+irfan-autobits
+gitacc1@autobits
 pip install openpyxl pandas opencv-python compreface-sdk sqlalchemy psycopg2
 pip install urllib3==1.25.11
 

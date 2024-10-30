@@ -1,13 +1,14 @@
 exipip freeze | xargs pip uninstall -y
 pip freeze>requirements.txt
 pip list --format=freeze > requirements.txt
-pip install -r requirements.txt
+uninstall all------------
+pip freeze | xargs pip uninstall -y
+
+list python packages which are manually installed by apt-get------
+apt-mark showmanual
+
 -----------remove cache-----------
 pip cache purge
-
----------terminal-----------
-python3 -m venv vvv
-source vvv/bin/activate
 
 ---------pipenv---------
 pipenv --python 3.8                 -creates for specific version
