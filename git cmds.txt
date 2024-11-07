@@ -1,5 +1,7 @@
 ----rev cache----
 git rm --cached -r '/_pycache_'
+for files-------------
+git rm --cached -r .env
 
 ----------…or create a new repository on the command line--------------
 cd path/to/your/local/project

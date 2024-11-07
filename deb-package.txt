@@ -1,0 +1,28 @@
+deb package----------
+
+To remove a package:
+sudo dpkg --remove package-name
+
+To purge a package:
+sudo dpkg --purge package-name
+
+To list installed packages:
+dpkg -l | grep package-name
+
+To remove unused dependencies:
+sudo apt-get autoremove
+install-----------------------
+install package:
+sudo dpkg -i VNC-Server-7.12.1-Linux-x64.deb
+
+Fix Any Dependency Issues (if required):
+sudo apt-get install -f
+
+opentightvncviewer:
+xtightvncviewer
+
+oper server:
+vncserver
+
+killserver:
+vncserver -kill :1

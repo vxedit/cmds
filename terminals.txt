@@ -1,2 +1,4 @@
 reset terminal to sane values:------------
 stty sane
+bashtop
+nvtop
