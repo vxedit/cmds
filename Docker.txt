@@ -23,7 +23,10 @@ stop all---
 docker stop $(docker ps -q)
 
 build container by compose --build for forced rebuild-------------------------------------------------
-docker-compose up --build
+docker-compose up --build <service /or none to build all>
+
+for more specified build 
+docker compose up --build auto-crud compreface-fe
 
 --in detached(background)----
 docker-compose up -d
@@ -131,3 +134,12 @@ docker cp compreface-ui:/path/inside/container /path/on/host
 docker cp /home/irfan/editing by pyhon/Autobit-proj/compreface-git/CompreFace/ui/src/styles/colors.scss compreface-ui:/path/inside/container
 docker cp /home/irfan/editing\ by\ pyhon/Autobit-proj/compreface-git/CompreFace/embedding-calculator/src/services/facescan/plugins/facenet/facenet.py compreface-core:/src/services/facescan/plugins/facenet/facenet.py
 
+------------logs-------
+specific image--------
+docker logs compreface-ui
+real time--------
+docker logs -f compreface-ui
+entire compose----------
+docker-compose logs -f
+specific image ina compose real time---------
+docker-compose logs -f compreface-ui

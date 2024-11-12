@@ -1,0 +1,43 @@
+dependency by apt install---------
+sudo apt update
+sudo apt install -y make build-essential libssl-dev zlib1g-dev \
+libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
+libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+
+install pyenv---------
+curl https://pyenv.run | bash
+
+link to bash-----------
+add these lines to both at( ~/.bashrc and  ~/.profile ) or (~/.bash_profile if it exists)
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+reload bash by 
+source ~/.bashrc
+source ~/.profile 
+or 
+source ~/.bash_profile
+
+verify------
+pyenv --version
+
+--------------------------pyenv installed-------------------
+install python with pyenv----------------------------
+pyenv install 3.8.12
+
+Installed Python-3.8.12 to /home/irfan/.pyenv/versions/3.8.12-----------
+
+---------------venv by pyenv---------------
+create----------
+pyenv virtualenv 3.8.12 dashboard_env
+activate----------
+pyenv activate dashboard_env
+
+check python version---
+python --version
+or 
+pyenv version
