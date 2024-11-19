@@ -1,0 +1,17 @@
+start ssh agent:-------------------------------
+eval "$(ssh-agent -s)"
+
+ssh key gen:
+ssh-keygen -t rsa -b 4096 -C "irfan.autobits@gmail.com"
+
+add new keys (if SSH Key is Not Added to the SSH Agent)-------------
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa_irfanautobits
+
+view----
+cat ~/.ssh/id_rsa.pub
+
+test connection-------------
+ssh -T git@gitlab.com
+or---------
+ssh -vT git@gitlab.com

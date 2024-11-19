@@ -1,0 +1,21 @@
+sending post req on endpoint with json-payload----------
+curl -X POST http://localhost:5000/endpoint -H "Content-Type: application/json" -d '{"test_key": "test_value"}'
+curl -X POST http://localhost:8000/crud/endpoint -H "Content-Type: application/json" -d '{"test_key": "test_value"}'
+
+get req -----------
+curl http://localhost:5000/endpoint
+
+
+
+autobits-crud           | [2024-11-12 11:30:35,800] INFO in app: POST request received
+autobits-crud           | [2024-11-12 11:30:35,800] DEBUG in app: responpons: 
+autobits-crud           |             "message": "POST request received",
+autobits-crud           |             "data_received": {'test_key': 'test_value'}
+autobits-crud           |             
+
+autobits-crud           | [2024-11-12 11:30:49,181] INFO in app: POST request received
+autobits-crud           | [2024-11-12 11:30:49,181] DEBUG in app: responpons: 
+autobits-crud           |             "message": "POST request received",
+autobits-crud           |             "data_received": {'test_key': 'test_value'}
+autobits-crud           |             
+compreface-ui           | 172.20.0.1 - - [12/Nov/2024:11:30:49 +0000] "POST /crud/endpoint HTTP/1.1" 200 78 "-" "curl/8.5.0"

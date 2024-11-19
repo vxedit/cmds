@@ -1,0 +1,15 @@
+open-web-ui container--------------------------------------------------------------------------------------------------------
+docker run -d --network=host -v open-webui:/app/backend/data -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+---------------------------------------------------------------------------------------------------------------------------------
+
+Stable Diffusion Install===================================
+install Pyenv python 3.10
+
+Install Stable Diffusion------------------------------
+wget -q https://raw.githubusercontent.com/AUTOMATIC1111/stable-diffusion-webui/master/webui.sh
+
+Make it executable-----------------------
+chmod +x webui.sh
+
+Run it------------------------
+./webui.sh --listen --api

@@ -54,14 +54,14 @@ docker rm <container_name_or_id>
 - all---
 docker container prune
 
------------- docke images-------------------------
+------------ docke images-----------------------------------------------------------------------------------------------------------------
 run container by images----
 docker run <image_name_or_id>
 
 -d to run in detached mode, -it for interactive mode:
 docker run -d -it <image_name_or_id>
 
-docker run -p 8000:8000 transformer-prediction
+docker run -it -p 5000:5000 dev-auto-crud
 
 by nginx==========
 docker run -p 80:80 transformer-prediction
@@ -83,10 +83,18 @@ docker build -t <image_name> <path_to_dockerfile>
 docker build -t myapp:1.0 .
 
 remove images------------
-docker rmi <image_name_or_id>
+docker rmi <image_name_or_id> <image_name_or_id>
 - all --
 docker image prune -a
----------------------push/pull---------------------------------------------
+-----------------volums-------------------------------
+remove all-----------
+docker volume prune -f
+docker volume rm $(docker volume ls -q)
+remove specific-----------
+docker volume rm <volume_name> <volume_name>
+list all---------------
+docker volume ls
+---------------------push/pull--------------------------------------------------------------------------------------------------------------------
 tagging image beofre pushing=========
 docker tag <image_name> <tag>
 docker tag Transformer-prediction irfans4docker/transformer-prediction:latest

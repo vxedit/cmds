@@ -1,0 +1,10 @@
+check ownership -----------------
+ls -ld .git/objects
+change it to current user ------------------------
+sudo chown -R $(whoami):$(whoami) .
+
+allow user to read and write -----
+chmod -R u+rw .
+
+delete the .local file ------------------
+find .git/objects -name "*.lock" -delete

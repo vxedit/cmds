@@ -30,21 +30,21 @@ git remote add origin https://github.com/vxedit/cmds.git
 git branch -M main
 git push -u origin main
 
-------------------------------
+----------------------------------------- ssh -------------------------------------------------------------------------------------------------------
 generate ssh and connect--------
 ssh-keygen -t rsa -b 4096 -C "your-github(which has the repo)-email@example.com"
 ssh-keygen -t rsa -b 4096 -C "irfan.autobits@gmail.com"
 show key--
 cat /home/irfan/.ssh/id_rsa_irfanautobits.pub
 
-add public key in gie account--
+add public key in git account--
 
 test connection-
 ssh -T git@github.com
 
 connect----
 git remote add origin git@github.com:irfan-autobits/compreface-release.git
-
+git remote set-url origin git@gitlab.com:deeptilva3003/facenet.git 
 git remote set-url origin git@github.com:your-other-account/compreface-release.git
 ----origin-------
 remove--

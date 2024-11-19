@@ -1,0 +1,46 @@
+reference:  ===================================================================================================
+https://medium.com/@docteur_rs/installing-privategpt-on-wsl-with-gpu-support-5798d763aa31
+===============================================================================================================
+
+pre-req ----------------------------------------------------------
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install build-essential
+
+Cloning the PrivateGPT repo -----------------------------------------
+git clone https://github.com/imartinez/privateGPT
+
+================ pyenv =============
+Install Python 3.11 and set it as the global version:------------------
+pyenv install 3.11
+pyenv global 3.11
+pip install pip --upgrade
+pyenv local 3.11
+================================
+Install poetry to manage dependencies: -----------------------------
+curl -sSL https://install.python-poetry.org | python3 -
+
+export --------------------- <YOU USERNAME> = $(whoami)
+export PATH="/home/<YOU USERNAME>/.local/bin:$PATH"
+
+check & reload ---------------
+source ~/.bashrc
+poetry --version 
+
+Installing PrivateGPT Dependencies (Navigate to the PrivateGPT directory and install dependencies:) ----------
+cd privateGPT
+poetry install --extras "ui embeddings-huggingface llms-llama-cpp vector-stores-qdrant"
+
+
+Building and Running PrivateGPT =============================================
+
+Finally, install LLAMA CUDA libraries and Python bindings:--------------------------------------------
+CMAKE_ARGS='-DLLAMA_CUBLAS=on' poetry run pip install --force-reinstall --no-cache-dir llama-cpp-python
+
+Let PrivateGPT download a local LLM for you (mixtral by default):---------------------------------
+poetry run python scripts/setup
+
+To run PrivateGPT, -----------------------
+make run
+
+    ℹ️ Go to 127.0.0.1:8001 in your browser
