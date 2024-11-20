@@ -1,0 +1,18 @@
+install angular--
+npm install @angular/cli --save-dev
+spec-version------
+npm install @angular/cli@~11.0.5 --save-dev
+
+uninstall---
+npm uninstall -g @angular/cli
+
+start app- (Since it’s a local installation, always use npx to access the CLI commands:)
+npx ng new my-first-angular-app
+
+run-
+npx ng serve
+
+new componente---
+ng generate component xyz
+
+ng generate component housingLocation --inline-template --skip-tests
