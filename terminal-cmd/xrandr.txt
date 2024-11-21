@@ -49,6 +49,7 @@ boot by usb----
 lsblk
 sudo mount /dev/nvme0n1p2 /mnt
 sudo mv /mnt/etc/X11/xorg.conf.d/20-virtual.conf /mnt/etc/X11/xorg.conf.d/20-virtual.conf.bak
+sudo mv /etc/X11/xorg.conf.d/20-virtual.conf /etc/X11/xorg.conf.d/20-virtual.conf.bak
 
 
 

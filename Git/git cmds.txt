@@ -142,3 +142,8 @@ then push changes--------------
 for merge (comon commit then remot/local then local/remot then merge commit)-----------
 git pull --no-rebase origin master
 
+for recent HEAD positions---------
+git reflog
+
+move head----------
+git reset --hard 710070d

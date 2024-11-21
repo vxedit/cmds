@@ -208,3 +208,8 @@ To start the hotspot, simply click on the network icon again, and select your ne
 package consistency------------------
 vlc rtsp://autobits:Autobits@123@192.168.1.204:554 --verbose 2
 ffmpeg -i rtsp://autobits:Autobits@123@192.168.1.204:554 -vf "showinfo" -f null -
+
+ffmpeg -i "rtsp://marketingoffice:CameraOffice%23999@10.30.8.3:554" -vf "showinfo" -f null -
+
+ffmpeg -i "rtsp://marketingoffice:CameraOffice%23999@10.30.8.3:554" -loglevel verbose -f null -
+ffplay "rtsp://marketingoffice:CameraOffice%23999@10.30.8.3:554" -loglevel debug

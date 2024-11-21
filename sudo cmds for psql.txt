@@ -71,7 +71,9 @@ AZURE_CREDENTIAL_CACHE_DIR = os.path.join(DATA_DIR, 'azurecredentialcache')
 python pgadmin-env/lib/python3.10/site-packages/pgadmin4/pgAdmin4.py
 python3 pgadmin-env/lib/python3.10/site-packages/pgadmin4/pgAdmin4.py
 current ************
+this pc
 python3 pgadminvenv/lib/python3.12/site-packages/pgadmin4/pgAdmin4.py
+else
 python3 pgadminenv/lib/python3.12/site-packages/pgadmin4/pgAdmin4.py 
 python3 /home/autobits/pgadminenv/lib/python3.12/site-packages/pgadmin4/pgAdmin4.py
 - access at

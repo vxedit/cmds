@@ -3,11 +3,17 @@ npm install @angular/cli --save-dev
 spec-version------
 npm install @angular/cli@~11.0.5 --save-dev
 
-uninstall---
+check angular-
+ng version
+
+uninstall global---
 npm uninstall -g @angular/cli
 
+remove cache----
+npm cache clean --force
+
 start app- (Since it’s a local installation, always use npx to access the CLI commands:)
-npx ng new my-first-angular-app
+npx ng new angular-app
 
 run-
 npx ng serve
