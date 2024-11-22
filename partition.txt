@@ -1,0 +1,38 @@
+Find Partitions:
+lsblk
+
+Unmount /home:
+sudo umount /dev/sdXn
+
+ Remove the /home Mount from fstab
+Mount Your Root Partition:
+sudo mount /dev/sdXn /mnt
+
+Edit fstab:
+sudo nano /mnt/etc/fstab
+Locate the line for /home and comment it out by adding a # at the beginning or delete the line entirely.
+
+Unmount Root:
+sudo umount /mnt
+
+Delete the /home Partition:
+Open GParted:
+sudo gparted
+
+Delete /home Partition:
+Select the /home partition.
+Delete it.
+Apply changes.
+
+Resize Root Partition:
+Use GParted to extend your root partition into the unallocated space created by deleting the /home partition.
+Apply changes.
+
+Move /home to Root
+Create a /home Directory: Boot into your Linux system (from the disk, not live mode) and run:
+sudo mkdir /home
+sudo chown root:root /home
+sudo chmod 755 /home
+
+check space:
+df -h
