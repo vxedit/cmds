@@ -29,17 +29,31 @@ source ~/.bash_profile
 verify------
 pyenv --version
 
+already installed versions---
+pyenv versions
+
+check supported versions-------
+pyenv install --list
 --------------------------pyenv installed-------------------
 install python with pyenv----------------------------
 pyenv install 3.8.12
 
 Installed Python-3.8.12 to /home/irfan/.pyenv/versions/3.8.12-----------
 
+pyenv uninstall 3.11.9/envs/speech_env
+
+----------global/local-------------------------------
+Install Python 3.11 and set it as the global version:------------------
+pyenv install 3.11
+pyenv global 3.11
+pip install pip --upgrade
+pyenv local 3.11
 ---------------venv by pyenv---------------
 create----------
 pyenv virtualenv 3.8.12 dashboard_env
 activate----------
 pyenv activate dashboard_env
+pyenv activate speech_env
 
 check python version---
 python --version

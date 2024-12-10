@@ -5,6 +5,8 @@ curl -X POST http://localhost:8000/crud/endpoint -H "Content-Type: application/j
 get req -----------
 curl http://localhost:5000/endpoint
 
+download a deb pakage-------
+curl -LO https://example.com/warp.deb
 
 
 autobits-crud           | [2024-11-12 11:30:35,800] INFO in app: POST request received
@@ -19,3 +21,18 @@ autobits-crud           |             "message": "POST request received",
 autobits-crud           |             "data_received": {'test_key': 'test_value'}
 autobits-crud           |             
 compreface-ui           | 172.20.0.1 - - [12/Nov/2024:11:30:49 +0000] "POST /crud/endpoint HTTP/1.1" 200 78 "-" "curl/8.5.0"
+
+add-------------------------------------------
+curl -X POST http://localhost:5001/add_camera \
+-H "Content-Type: application/json" \
+-d '{"camera_id": "camera1", "rtsp_url": "rtsp://marketingoffice:CameraOffice@999@10.20.11.2:554/unicast/c12/s0/live"}'
+
+start-------------------
+curl -X POST http://localhost:5001/start/camera1
+
+stop--------------
+curl -X POST http://localhost:5001/stop/camera1
+
+list-------
+curl -X POST http://localhost:5001/list_cameras
+
