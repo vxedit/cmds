@@ -35,6 +35,8 @@ poetry install --extras "ui embeddings-huggingface llms-llama-cpp vector-stores-
 Building and Running PrivateGPT =============================================
 
 Finally, install LLAMA CUDA libraries and Python bindings:--------------------------------------------
+CMAKE_ARGS='-DGGML_CUDA=on' poetry run pip install --force-reinstall --no-cache-dir llama-cpp-python
+this dont work: \/
 CMAKE_ARGS='-DLLAMA_CUBLAS=on' poetry run pip install --force-reinstall --no-cache-dir llama-cpp-python
 
 Let PrivateGPT download a local LLM for you (mixtral by default):---------------------------------

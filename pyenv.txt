@@ -12,6 +12,13 @@ curl https://pyenv.run | bash
 link to bash-----------
 add these lines to both at( ~/.bashrc and  ~/.profile ) or (~/.bash_profile if it exists)
 
+new straight-forward------------
+# Add pyenv to PATH
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
 export --------------
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"

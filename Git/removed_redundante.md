@@ -32,6 +32,10 @@
   ```bash
   git remote add origin <remote-url>
   ```
+- Add remote:
+  ```bash
+  git fetch origin
+  ```
 - Verify remote:
   ```bash
   git remote -v
