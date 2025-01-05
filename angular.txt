@@ -1,10 +1,33 @@
 install angular--
+local--
+npm install @angular/cli
+global--
+npm install -g @angular/cli
+as a development dependency -----
 npm install @angular/cli --save-dev
 spec-version------
 npm install @angular/cli@~11.0.5 --save-dev
+with loging---
+npm install @angular/cli@11.0.7 --save-dev --verbose
+silly level log---
+npm install @angular/cli@11.0.7 --save-dev --loglevel=silly
 
-check angular-
+framework---
+npm install @angular/core @angular/common
+or
+npm install @angular/core @angular/common @angular/router
+
+------------------------------------------------
+Check Global Angular CLI & Angular framework packages -
 ng version
+or
+npx ng version
+
+Check Angular CLI-----
+npm list -g @angular/cli
+
+Check Installed Angular Framework-----
+npm list @angular/core
 
 uninstall global---
 npm uninstall -g @angular/cli
@@ -12,8 +35,13 @@ npm uninstall -g @angular/cli
 remove cache----
 npm cache clean --force
 
+---------------------------------------------------------------
 start app- (Since it’s a local installation, always use npx to access the CLI commands:)
-npx ng new angular-app
+npx ng new my-angular-app
+or
+ng new my-angular-app
+cd my-angular-app
+
 
 run-
 npx ng serve

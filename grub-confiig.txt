@@ -2,6 +2,9 @@
 list files----------------------
 grep "menuentry" /boot/grub/grub.cfg 
 
+copy entire string for windows boot manager entry and paste that to grub_default=0
+0 = index of entries 
+"windows" = name
 open grub--------------
 sudo nano /etc/default/grub
 

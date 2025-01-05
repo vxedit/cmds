@@ -1,0 +1,79 @@
+hathi eth mac addr:- 10:ff:e0:63:b4:29
+
+ethtool process for enabling wol on a machine:
+install it:
+sudo apt install ethtool
+
+list network interfaces:
+ip link
+
+status for wol on a interface:
+sudo ethtool <network_interface>
+eg :enp0s31f6 or enp4s0
+
+Temporarily enable WoL:
+sudo ethtool -s <network_interface> wol g
+
+Make WoL Persistent :
+1.Edit the Netplan Configuration File
+2.systemmd
+create a script:==============================
+sudo nano /usr/local/bin/enable-wol.sh
+
+this content------
+#!/bin/bash
+ethtool -s enp4s0 wol g
+--------------------------
+
+make it executable :
+sudo chmod +x /usr/local/bin/enable-wol.sh
+
+Create a systemd service file:=================
+sudo nano /etc/systemd/system/wol.service
+
+this content:--------------------------
+[Unit]
+Description=Enable Wake-on-LAN
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/enable-wol.sh
+
+[Install]
+WantedBy=multi-user.target
+-----------------------------------------
+
+enble and start the service:
+sudo systemctl enable wol.service
+sudo systemctl start wol.service
+
+reboot and verify:
+sudo ethtool enp4s0
+sudo ethtool <network_interface>
+
+
+----sending magic packates----
+wakeonlan 10:ff:e0:63:b4:29
+
+mac address check----
+arp -a | grep 10:ff:e0:63:b4:29
+ethernet ip:
+ping 10.30.8.43
+
+ffplay rtsp://marketingoffice:CameraOffice@999@10.20.11.2:554/unicast/c11/s0/live
+
+port forward-----
+Enable port forwarding for UDP port 9
+
+port 9 activity:
+sudo tcpdump -i <interface> port 9
+sudo tcpdump -i enp4s0 port 52518
+sudo tcpdump -i wlp2s0 port 52518
+sudo tcpdump -i wlp2s0 port 56226
+process on port 
+sudo lsof -i :52518
+sudo lsof -i :56226
+
+ssh autobits@10.30.8.43
+autobits@autobits-A520M-K-V2:~$
